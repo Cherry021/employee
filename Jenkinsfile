@@ -5,14 +5,26 @@ pipeline{
             args '-p 3000:3000'
         }
     }
-    stage('Build'){
-        steps{
-            sh 'npm install'
-        }
+    environment{
+        CI = 'true'
     }
-    stage('Test'){
-        steps{
-            sh './tests/test.sh'
+    stages{
+        stage('Build'){
+            steps{
+                sh 'npm install'
+            }
+        }
+        stage('Test'){
+            steps{
+                sh './tests/test.sh'
+            }
+        }
+        stage('Deliver'){
+            steps{
+                sh './delivers/deliver.sh'
+                input message: 'Finished website deployment. Click proceed to continue'
+                sh './delivers/kill.sh'
+            }
         }
     }
 }
