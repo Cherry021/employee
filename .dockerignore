@@ -1,0 +1,8 @@
+node_modules
+delivers
+Jenkinsfile
+tests
+Dockerfile
+.gitignore
+.dockerignore
+.env

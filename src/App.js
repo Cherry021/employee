@@ -4,7 +4,8 @@ function App() {
   
   return (
     <div className="App">
-        I am Thiru. Glad to meet you.
+        Super man is flying to rescue everyone.
+        Spider man is also flying. So what??
     </div>
   );
 }
