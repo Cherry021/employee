@@ -4,6 +4,6 @@ WORKDIR '/app'
 COPY package.json .
 RUN npm install
 COPY . .
-ENV REACT_APP_NAME=sastry
+ENV REACT_APP_NAME=employee
 EXPOSE 3000
 CMD ["npm","start"]

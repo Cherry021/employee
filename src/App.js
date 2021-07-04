@@ -4,8 +4,16 @@ function App() {
   
   return (
     <div className="App">
-        Super man is flying to rescue everyone.
-        Spider man is also flying. So what??
+      <pre>
+        Hi {process.env.REACT_APP_NAME}<br />
+        Super man is flying to rescue everyone.<br />
+        Spider man is also flying. So what??<br />
+        Super job......<br />
+        Wowow
+        keka po<br />
+        Saaho<br />
+        Bolo ramji
+        </pre>
     </div>
   );
 }
