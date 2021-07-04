@@ -1,30 +1,17 @@
-pipeline{
-    agent{
-        docker{
-            image 'node:6-alpine'
-            args '-p 3000:3000'
-        }
+node {
+    def app
+
+    stage('Cloning the Repository') {
+        checkout scm
     }
-    environment{
-        CI = 'true'
+    stage('Build Image') {
+        app = docker.build('charan-react-app')
     }
-    stages{
-        stage('Build'){
-            steps{
-                sh 'npm install'
-            }
+    stage('pushing the image') {
+        docker.withRegistry('https://registry.hub.docker.com', 'docker-hub') {
+            app.push("${env.BUILD_NUMBER}")
+            app.push("latest")
         }
-        stage('Test'){
-            steps{
-                sh './tests/test.sh'
-            }
-        }
-        stage('Deliver'){
-            steps{
-                sh './delivers/deliver.sh'
-                input message: 'Finished website deployment. Click proceed to continue'
-                sh './delivers/kill.sh'
-            }
-        }
+        echo "Trying to push Docker build to Docker Hub"
     }
 }
